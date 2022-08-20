@@ -1,0 +1,46 @@
+query GamesQuery($orderByField: UserGameOrderField!) {
+    viewer {
+        id
+
+        games(orderBy: { field: $orderByField, direction: DESC }) {
+            nodes {
+                id
+                spaceId
+                backgroundUrl
+                lowBoxArtUrl
+                name
+                isCrossplaySupported
+
+                platform {
+                    id
+                    name
+                    applicationId
+                }
+
+                crossplayPlatforms {
+                    nodes {
+                        id
+                        name
+                    }
+                }
+
+                viewer {
+                    meta {
+                        id
+
+                        lastPlayedOn {
+                            name
+                        }
+
+                        ownedCrossplayPlatforms {
+                            nodes {
+                                id
+                                name
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

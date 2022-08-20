@@ -1,0 +1,173 @@
+fragment AvatarUser on User {
+    id
+    name
+    avatarUrl
+    userId
+}
+
+fragment AvatarGame on Game {
+    id
+    spaceId
+    name
+
+    viewer {
+        meta {
+            isOwned
+        }
+    }
+}
+
+fragment StartedNewGame on StartedNewGame {
+    user {
+        ...AvatarUser
+    }
+
+    game {
+        ...AvatarGame
+        name
+        backgroundUrl
+    }
+}
+
+fragment PurchasedReward on PurchasedReward {
+    user {
+        ...AvatarUser
+    }
+    game {
+        ...AvatarGame
+    }
+    reward {
+        id
+        rarity
+        imageUrl
+    }
+}
+
+fragment ReachedGlobalCoreChallengesThreshold on ReachedGlobalCoreChallengesThreshold {
+    user {
+        ...AvatarUser
+    }
+
+    value
+}
+
+fragment ReachedGameCoreChallengesThreshold on ReachedGameCoreChallengesThreshold {
+    user {
+        ...AvatarUser
+    }
+
+    game {
+        ...AvatarGame
+        backgroundUrl
+    }
+
+    value
+}
+
+fragment CompletedPeriodicChallenge on CompletedPeriodicChallenge {
+    user {
+        ...AvatarUser
+    }
+
+    game {
+        ...AvatarGame
+    }
+
+    challenge {
+        id
+        name
+        imageUrl
+        type
+
+        viewer {
+            meta {
+                id
+                isCollectible
+                isCompleted
+            }
+        }
+
+        xpPrize
+        prizes {
+            edges {
+                meta {
+                    id
+                    count
+                }
+                node {
+                    id
+                    name
+                    imageUrl
+                    type
+                }
+            }
+        }
+    }
+}
+
+fragment NewFriend on NewFriend {
+    user {
+        ...AvatarUser
+    }
+
+    requesterUser {
+        id
+        name
+        avatarUrl
+    }
+
+    accepterUser {
+        id
+        name
+        avatarUrl
+    }
+}
+
+fragment LevelUp on LevelUp {
+    user {
+        ...AvatarUser
+    }
+    level
+    accountRewards {
+        iconUrl
+        name
+        quantity
+    }
+}
+
+fragment UserCreated on UserCreated {
+    user {
+        ...AvatarUser
+    }
+    accountRewards {
+        iconUrl
+        name
+        quantity
+    }
+}
+
+query FeedQuery($before: ID, $platforms: [String!], $limit: Int) {
+    viewer {
+        id
+        feed(
+            before: $before
+            platforms: $platforms
+            limit: $limit
+            feedType: ACTIVITY
+        ) {
+            id
+            creationDate
+
+            event {
+                ...StartedNewGame
+                ...PurchasedReward
+                ...ReachedGlobalCoreChallengesThreshold
+                ...ReachedGameCoreChallengesThreshold
+                ...CompletedPeriodicChallenge
+                ...NewFriend
+                ...LevelUp
+                ...UserCreated
+            }
+        }
+    }
+}

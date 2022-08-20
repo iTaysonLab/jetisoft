@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Jetisoft</string>
+
+    <string name="tab_home">Home</string>
+    <string name="tab_games">Games</string>
+    <string name="tab_social">Social</string>
+    <string name="tab_notifications">Notifications</string>
+    <string name="tab_me">Profile</string>
+
+    <string name="auth_title">Welcome to Jetisoft!</string>
+    <string name="auth_subtitle">An unofficial Ubisoft Connect client.</string>
+
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Log in</string>
+    <string name="disclaimers">Disclaimers</string>
+
+    <string name="hide_password">Hide password</string>
+    <string name="show_password">Show password</string>
+
+    <string name="sort">Sort by</string>
+    <string name="sort_recently">Recently played</string>
+    <string name="sort_release">Release date</string>
+    <string name="sort_name">Name</string>
+
+    <string name="classic_challenges">Core Challenges</string>
+    <string name="periodic_challenges">Time-Limited Challenges</string>
+    <string name="rewards">Rewards</string>
+    <string name="stats">Statistics</string>
+
+    <string name="auth_disclaimer">Disclaimers</string>
+    <string name="auth_disclaimer_text">
+        Jetisoft is an unofficial application which is not connected in any ways to Ubisoft.\n\nBy entering your account details and pressing \"Log in\", you confirm that the account you\'re using is yours.\n\nPlease note that usage of this application may lead to a ban - the application developers are not responsible for that.
+    </string>
+    <string name="confirm">Confirm</string>
+</resources>

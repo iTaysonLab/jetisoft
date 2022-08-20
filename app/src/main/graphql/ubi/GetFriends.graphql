@@ -1,0 +1,29 @@
+query GetFriends {
+    viewer {
+        id
+        friends(limit: 50, filterBy: { requestStatus: FRIENDS }) {
+            totalCount
+            nodes {
+                id
+                userId
+                name
+                avatarUrl
+                onlineStatus
+                currentOnlineGame {
+                    node {
+                        id
+                        name
+                        backgroundUrl
+                    }
+                }
+                lastPlayedGame {
+                    node {
+                        id
+                        name
+                        backgroundUrl
+                    }
+                }
+            }
+        }
+    }
+}

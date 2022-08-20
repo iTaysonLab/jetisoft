@@ -1,0 +1,73 @@
+query GetGameInfo ($spaceId: String) {
+    game(spaceId: $spaceId) {
+        id
+
+        name
+        description
+
+        backgroundUrl
+        logoColorUrl
+        logoFlatUrl
+
+        websiteUrl
+        facebookUrl
+        instagramUrl
+        redditUrl
+
+        releaseDate
+
+        isCrossplaySupported
+        isStatisticsSupported
+
+        viewer {
+            meta {
+                id
+
+                classicChallenges(limit: 5, orderBy: { field: IS_COMPLETED, direction: ASC }) {
+                    totalCount
+                    completedCount
+                    totalXpCount
+                    xpEarnedCount
+
+                    nodes {
+                        ...classicChallengeNode
+                    }
+                }
+
+                rewards(limit: 1) {
+                    totalCount
+                    redeemedCount
+                }
+
+                isDailyLoginSupported
+
+                lastPlayedDate
+
+                lastPlayedOn {
+                    name
+                }
+            }
+        }
+    }
+}
+
+fragment classicChallengeNode on ClassicChallenge {
+    id
+    challengeId
+    description
+    name
+    xpPrize
+    formattedTargetCompletion
+    targetCompletion
+    icon
+
+    viewer {
+        meta {
+            id
+            completionDate
+            isCompleted
+            currentCompletion
+            formattedCurrentCompletion
+        }
+    }
+}

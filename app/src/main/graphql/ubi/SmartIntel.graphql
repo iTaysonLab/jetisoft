@@ -1,0 +1,201 @@
+fragment SmartIntelIntroTile on IntroTile {
+  id
+  message
+  spaceId
+  game {
+    id
+    lowBoxArtUrl
+  }
+}
+
+fragment SmartIntelTextTile on TextTile {
+  id
+  text
+}
+
+fragment SmartIntelCongratsTile on CongratsTile {
+  id
+  message
+  imageUrl
+}
+
+fragment SmartIntelRewardTile on RewardTile {
+  id
+  spaceId
+  rewardId
+  reward {
+    id
+    rewardId
+    name
+    count
+    imageUrl
+    isNew
+    cost
+    game {
+      node {
+        id
+        spaceId
+        name
+        platform {
+          id
+          name
+        }
+        viewer {
+          meta {
+            id
+            isOwned
+          }
+        }
+      }
+    }
+    viewer {
+      node {
+        id
+        unitsBalance
+      }
+      meta {
+        id
+        isLocked
+        isRedeemed
+        redeemedCount
+      }
+    }
+  }
+}
+
+fragment SmartIntelClassicChallengeTile on ClassicChallengeTile {
+  id
+  spaceId
+  classicChallenge {
+    id
+    challengeId
+    name
+    description
+    icon
+    xpPrize
+    viewer {
+      meta {
+        id
+        isCompleted
+        completionDate
+      }
+    }
+  }
+}
+
+fragment SmartIntelPeriodicChallengeTile on PeriodicChallengeTile {
+  id
+  challengeId
+  spaceId
+  periodicChallenge {
+    id
+    challengeId
+    spaceId
+    name
+    _type: type
+    description
+    isExpired
+    imageUrl
+    previewUrl
+    xpPrize
+    prizes {
+      nodes {
+        id
+        imageUrl
+      }
+    }
+    viewer {
+      meta {
+        id
+        isActivated
+        isCollectible
+        isCompleted
+      }
+    }
+    thresholds {
+      totalCount
+      nodes {
+        id
+        value
+      }
+    }
+  }
+}
+
+fragment SmartIntelArticleT22ile on ArticleTile {
+  id
+  articleTitle: title
+  url
+  contentId
+  isDisliked
+  isLiked
+  isViewed
+  imageUrl
+  requiresSSO
+}
+
+fragment SmartIntelYoutubeVideoTile on YoutubeVideoTile {
+  id
+  videoId
+  imageUrl
+  duration
+  authorName
+  videoTitle: title
+  contentId
+  isDisliked
+  isLiked
+  isViewed
+}
+
+fragment SmartIntelYoutubePlaylistTile on YoutubePlaylistTile {
+  id
+  playlistId
+  videoCount
+  imageUrl
+  title
+  contentId
+  isDisliked
+  playListTitle: title
+  isLiked
+  isViewed
+}
+
+fragment SmartIntelArticleTile on ArticleTile {
+  id
+  articleTitle: title
+  url
+  contentId
+  isDisliked
+  isLiked
+  isViewed
+  imageUrl
+  requiresSSO
+}
+
+fragment SmartIntel on DailyLogin {
+  id
+  date
+  tiles {
+    tileType: type
+    section
+    ...SmartIntelIntroTile
+    ...SmartIntelTextTile
+    ...SmartIntelCongratsTile
+    ...SmartIntelRewardTile
+    ...SmartIntelClassicChallengeTile
+    ...SmartIntelPeriodicChallengeTile
+    ...SmartIntelArticleTile
+    ...SmartIntelYoutubeVideoTile
+    ...SmartIntelYoutubePlaylistTile
+  }
+}
+
+query getSmartIntels($spaceId: String!, $before: ID, $limit: Int) {
+  viewer {
+    dailyLogins(filterBy: {spaceId: $spaceId}, before: $before, limit: $limit) {
+      nodes {
+        ...SmartIntel
+      }
+    }
+  }
+}

@@ -1,0 +1,34 @@
+query ViewerSummaryQuery {
+    viewer {
+        id
+        userId
+        name
+        avatarUrl
+        level
+        levelProgression
+        unitsBalance
+        onlineStatus
+    }
+}
+
+query CurrentGameQuery {
+    viewer {
+        id
+
+        currentOnlineGame {
+            meta {
+                lastPlayedOn {
+                    applicationId
+                    name
+                }
+            }
+
+            node {
+                id
+                name
+                spaceId
+                lowBoxArtUrl
+            }
+        }
+    }
+}

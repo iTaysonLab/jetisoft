@@ -1,0 +1,18 @@
+query GetMetaProgression {
+    viewer {
+        id
+        level
+        levelProgression
+        nextLevelXp
+        xp
+
+        nextLevelRewards {
+             nodes {
+                 id
+                 iconUrl
+                 quantity
+                 type
+             }
+        }
+    }
+}

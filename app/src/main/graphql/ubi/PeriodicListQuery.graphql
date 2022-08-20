@@ -1,0 +1,145 @@
+query PeriodicListQuery($spaceId: String!) {
+    game(spaceId: $spaceId) {
+        id
+        viewer {
+            meta {
+                id
+                currencyPrizes: periodicChallengePrizes(filterBy: {periodicChallengePrize: {type: CURRENCY}}) {
+                    ...PrizeData
+                }
+                itemPrizes: periodicChallengePrizes(filterBy: {periodicChallengePrize: {type: ITEM}}) {
+                    ...PrizeData
+                }
+                rewardPrizes: periodicChallengePrizes(filterBy: {periodicChallengePrize: {type: REWARD}}) {
+                    ...PrizeData
+                }
+                activatedChallengesXp: periodicChallenges(filterBy: {periodicChallenge: {isExpired: false}}) {
+                    totalXpCount
+                    xpEarnedCount
+                }
+                periodicChallenges: periodicChallenges {
+                    totalCount
+                    collectiblePrizesCount
+                    challenges: nodes {
+                        ...PeriodicChallengeData
+                    }
+                }
+            }
+        }
+    }
+}
+
+fragment PrizeData on UserGamePeriodicChallengePrizesConnection {
+    totalCount
+    collectedValuesCount
+    totalValuesCount
+    edges {
+        meta {
+            id
+            count
+            collectedCount
+
+        }
+        node {
+            id
+            imageUrl
+            name
+
+        }
+    }
+}
+
+fragment PeriodicChallengeData on PeriodicChallenge {
+    id
+    challengeId
+    startDate
+    endDate
+    isExpired
+    xpPrize
+    description
+    imageUrl
+    name
+    previewUrl
+    target: value
+    formattedValue
+    type
+    currencyPrizes: prizes(filterBy: {type: CURRENCY}) {
+        nodes {
+            id
+            imageUrl
+            name
+        }
+    }
+    itemPrizes: prizes(filterBy: {type: ITEM}) {
+        nodes {
+            id
+            imageUrl
+            name
+        }
+    }
+    rewardPrizes: prizes(filterBy: {type: REWARD}) {
+        nodes {
+            id
+            imageUrl
+            name
+        }
+    }
+    viewer {
+        meta {
+            id
+            isActivated
+            isCollectible
+            isCompleted
+            isInProgress
+            contribution
+            formattedContribution
+            progressPercentage
+            progress
+            formattedProgress
+        }
+    }
+    thresholds {
+        totalCount
+        nodes {
+            id
+            value
+            cumulatedValue
+            formattedCumulatedValue
+            xpPrize
+            viewer {
+                meta {
+                    id
+                    isCollected
+                    isCollectible
+                }
+            }
+            currencyPrizes: prizes(filterBy: {type: CURRENCY}) {
+                edges {
+                    meta {
+                        id
+                        value: count
+                    }
+                    node {
+                        id
+                        imageUrl
+                        name
+                    }
+                }
+            }
+            itemPrizes: prizes(filterBy: {type: ITEM}) {
+                nodes {
+                    id
+                    imageUrl
+                    name
+                }
+            }
+            rewardPrizes: prizes(filterBy: {type: REWARD}) {
+                nodes {
+                    id
+                    imageUrl
+                    name
+                }
+            }
+        }
+    }
+}

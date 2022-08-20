@@ -1,0 +1,45 @@
+query LastPlayedGameQuery {
+    viewer {
+        id
+        currentOnlineGame {
+            node {
+                id
+            }
+        }
+        lastPlayedGame {
+            node {
+                id
+                name
+                spaceId
+                backgroundUrl
+                isCrossplaySupported
+                statistics(limit: 2) {
+                    totalCount
+                    nodes {
+                        id
+                        name
+                        format
+                        statId
+                        viewer {
+                            meta {
+                                score
+                                formattedScore
+                            }
+                        }
+                    }
+                }
+            }
+            meta {
+                lastPlayedDate
+                lastPlayedOn {
+                    applicationId
+                    type
+                }
+                classicChallenges {
+                    completedCount
+                    totalCount
+                }
+            }
+        }
+    }
+}
