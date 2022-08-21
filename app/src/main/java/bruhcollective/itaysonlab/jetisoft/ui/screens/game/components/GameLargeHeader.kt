@@ -81,7 +81,7 @@ fun GameLargeHeader(
                 AsyncImage(
                     model = logoUrl,
                     contentDescription = null,
-                    modifier = Modifier.fillMaxWidth(fraction = 0.5f),
+                    modifier = Modifier.fillMaxWidth(fraction = 0.5f).heightIn(max = 150.dp),
                     contentScale = ContentScale.Fit
                 )
 
