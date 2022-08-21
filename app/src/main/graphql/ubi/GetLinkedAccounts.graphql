@@ -1,0 +1,19 @@
+query GetLinkedAccounts($userId: String!) {
+  user(userId: $userId) {
+    id
+    isViewer
+    networks {
+      edges {
+        meta {
+          id
+          profileId
+          name
+        }
+        node {
+          id
+          publicCodeName
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+query GetOnlineStatus($userId: String!) {
+  user(userId: $userId) {
+    id
+    onlineStatus
+  }
+}

@@ -1,0 +1,25 @@
+query GetViewerCommonalities {
+  user: viewer {
+    creationDate
+    ...CommonalitiesData
+    friends(filterBy: {requestStatus: FRIENDS}) {
+      totalCount
+    }
+  }
+}
+
+fragment CommonalitiesData on User {
+  id
+  isViewer
+  games(filterBy: {isOwned: true}) {
+    totalCount
+  }
+  viewer {
+    meta {
+      id
+      gamesInCommon {
+        totalCount
+      }
+    }
+  }
+}

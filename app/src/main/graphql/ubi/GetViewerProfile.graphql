@@ -1,0 +1,71 @@
+query GetViewerProfile {
+  user: viewer {
+    unitsBalance
+    ...ProfileData
+  }
+}
+
+fragment ProfileData on User {
+  id
+  userId
+  avatarUrl
+  name
+  level
+  isViewer
+  onlineStatus
+  games(filterBy: {isOwned: true}) {
+    totalCount
+  }
+  networks {
+    edges {
+      node {
+        id
+        publicCodeName
+      }
+      meta {
+        id
+        name
+      }
+    }
+  }
+  currentOnlineGame {
+    node {
+      id
+      name
+      platform {
+        id
+        type
+        name
+        applicationId
+      }
+    }
+    meta {
+      id
+      lastPlayedOn {
+        id
+        name
+        applicationId
+        type
+      }
+    }
+  }
+  lastPlayedGame {
+    node {
+      id
+      bannerUrl: backgroundUrl
+    }
+  }
+  viewer {
+    meta {
+      id
+      isFavorite
+      isFriend
+      isBlocked
+      requestStatus
+      nickname
+      gamesInCommon {
+        totalCount
+      }
+    }
+  }
+}
