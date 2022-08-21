@@ -13,8 +13,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.unit.dp
-import bruhcollective.itaysonlab.jetisoft.core.models.stats.StatsCard
+import androidx.compose.ui.unit.sp
 import bruhcollective.itaysonlab.jetisoft.core.models.stats.StatsMicroappDefTab
 import bruhcollective.itaysonlab.jetisoft.core.models.stats.StatsTabItem
 
@@ -22,7 +23,7 @@ import bruhcollective.itaysonlab.jetisoft.core.models.stats.StatsTabItem
 fun StatsTabPage(
     tab: StatsMicroappDefTab,
     localeFetcher: (String) -> String,
-    statCardFetcher: (String) -> StatsCard
+    statValueFetcher: (StatsTabItem, String) -> String
 ) {
     val flat = remember(tab) { tab.items.flatten() }
 
@@ -38,7 +39,7 @@ fun StatsTabPage(
             StatCardRenderer(
                 layoutDef = item,
                 localeFetcher = localeFetcher,
-                statCardFetcher = statCardFetcher,
+                statValueFetcher = statValueFetcher,
             )
         }
     }
@@ -48,24 +49,39 @@ fun StatsTabPage(
 private fun StatCardRenderer(
     layoutDef: StatsTabItem,
     localeFetcher: (String) -> String,
-    statCardFetcher: (String) -> StatsCard
+    statValueFetcher: (StatsTabItem, String) -> String
 ) {
-    val mainStat = remember(layoutDef.stats, layoutDef.formulaResult) {
-        layoutDef.formulaResult ?: layoutDef.stats.first()
+    val bgColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.2f)
+
+    val mainStat = remember(layoutDef.stats, layoutDef.mainStat, layoutDef.formulaResult) {
+        layoutDef.formulaResult ?: layoutDef.mainStat ?: layoutDef.stats.first()
     }
 
     val localized = remember(mainStat) {
         localeFetcher("title.$mainStat")
     }
 
-    val stats = remember(mainStat) {
-        statCardFetcher(mainStat)
+    val value = remember(layoutDef, mainStat) {
+        statValueFetcher(layoutDef, mainStat)
     }
 
-    Card(Modifier.fillMaxWidth()) {
-        Column(Modifier.padding(16.dp)) {
-            Text(text = stats.value, color = MaterialTheme.colorScheme.onSurface)
-            Text(text = localized, color = MaterialTheme.colorScheme.onSurface)
+    val progress = remember(layoutDef, value) {
+        if (layoutDef.formula?.contains("precision: 2") == true) {
+            value.toFloat()
+        } else {
+            0f
+        }
+    }
+
+    Card(Modifier) {
+        Column(Modifier.drawBehind {
+            drawRect(
+                color = bgColor,
+                size = size.copy(width = size.width * progress)
+            )
+        }.padding(16.dp).fillMaxWidth()) {
+            Text(text = localized, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f))
+            Text(text = value, color = MaterialTheme.colorScheme.onSurface, fontSize = 18.sp)
         }
     }
 }
