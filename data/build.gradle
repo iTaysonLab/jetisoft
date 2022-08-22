@@ -1,0 +1,44 @@
+plugins {
+    id("com.android.library")
+    id("kotlin-android")
+    id("kotlin-kapt")
+    alias(libs.plugins.moshix)
+    alias(libs.plugins.apollo)
+    alias(libs.plugins.hilt)
+}
+
+apollo {
+    packageName.set("ubi")
+    generateKotlinModels.set(true)
+}
+
+android {
+    namespace 'bruhcollective.itaysonlab.jetisoft.data'
+    compileSdk 33
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 33
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+kapt {
+    correctErrorTypes = true
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
+
+    implementation libs.bundles.retrofit
+    implementation libs.mmkv
+
+    implementation libs.apolloRuntime
+
+    implementation libs.hiltAndroid
+    kapt libs.hiltCompiler
+}

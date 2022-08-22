@@ -14,3 +14,13 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Jetisoft"
 include ':app'
+include ':microapp:news'
+include ':data'
+include ':domain'
+include ':microapp:homescreen'
+include ':microapp:gamepage'
+include ':microapp:library'
+include ':microapp:gamestats'
+include ':microapp:auth'
+include ':microapp:core'
+include ':uikit'

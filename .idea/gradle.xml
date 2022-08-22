@@ -11,6 +11,18 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/buildSrc" />
+            <option value="$PROJECT_DIR$/data" />
+            <option value="$PROJECT_DIR$/domain" />
+            <option value="$PROJECT_DIR$/microapp" />
+            <option value="$PROJECT_DIR$/microapp/auth" />
+            <option value="$PROJECT_DIR$/microapp/core" />
+            <option value="$PROJECT_DIR$/microapp/gamepage" />
+            <option value="$PROJECT_DIR$/microapp/gamestats" />
+            <option value="$PROJECT_DIR$/microapp/homescreen" />
+            <option value="$PROJECT_DIR$/microapp/library" />
+            <option value="$PROJECT_DIR$/microapp/news" />
+            <option value="$PROJECT_DIR$/uikit" />
           </set>
         </option>
       </GradleProjectSettings>

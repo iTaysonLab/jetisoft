@@ -1,15 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'com.apollographql.apollo3' version "3.5.0"
-    id "dev.zacsweers.moshix" version "0.18.3"
     id "dagger.hilt.android.plugin"
     id "kotlin-kapt"
-}
-
-apollo {
-    packageName.set("ubi")
-    generateKotlinModels.set(true)
 }
 
 android {
@@ -71,60 +64,38 @@ android {
     }
 }
 
+kapt {
+    correctErrorTypes = true
+}
+
 dependencies {
-    // Kotlin
-    implementation "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
-
-    // AndroidX
     coreLibraryDesugaring "com.android.tools:desugar_jdk_libs:1.2.0"
-    implementation "androidx.core:core-ktx:1.8.0"
-    implementation "androidx.palette:palette-ktx:1.0.0"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
 
-    // Compose
-    implementation "androidx.navigation:navigation-compose:2.5.1"
-    implementation "androidx.activity:activity-compose:1.5.1"
-    implementation "androidx.compose.material:material:$compose_version"
-    implementation "androidx.compose.material3:material3:$compose_m3_version"
-    implementation "androidx.compose.material:material-icons-extended:$compose_version"
-    implementation "androidx.compose.ui:ui:$compose_version"
-    implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
-    implementation "androidx.compose.ui:ui-util:$compose_version"
-    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
-    debugImplementation "androidx.customview:customview:1.2.0-alpha01"
-    debugImplementation "androidx.customview:customview-poolingcontainer:1.0.0"
+    implementation project(":domain")
+    implementation project(":data")
+    implementation project(":uikit")
 
-    // Compose - Additions
-    implementation "com.google.accompanist:accompanist-navigation-material:$accompanist_version"
-    implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist_version"
-    implementation "com.google.accompanist:accompanist-pager:$accompanist_version"
-    implementation "com.google.accompanist:accompanist-pager-indicators:$accompanist_version"
+    implementation project(":microapp:core")
+    implementation project(":microapp:auth")
+    implementation project(":microapp:homescreen")
+    implementation project(":microapp:news")
+    implementation project(":microapp:library")
+    implementation project(":microapp:gamepage")
+    implementation project(":microapp:gamestats")
 
-    // Images
-    implementation "io.coil-kt:coil-compose:2.1.0"
+    implementation libs.bundles.androidx
+    implementation libs.bundles.compose
+    implementation libs.bundles.accompanist
 
-    // DI
-    implementation "androidx.hilt:hilt-navigation-compose:1.0.0"
-    implementation "com.google.dagger:hilt-android:$hilt_version"
-    kapt "com.google.dagger:hilt-compiler:$hilt_version"
+    implementation libs.coilCompose
 
-    // Data - Network
-    implementation "com.apollographql.apollo3:apollo-runtime:3.5.0"
-    implementation "com.squareup.retrofit2:retrofit:2.9.0"
-    implementation "com.squareup.retrofit2:converter-moshi:2.9.0"
+    implementation libs.hiltNavigation
+    implementation libs.hiltAndroid
+    kapt libs.hiltCompiler
 
-    // Data - MMKV
-    implementation "com.tencent:mmkv:1.2.13"
-
-    // Misc
-    implementation "com.halilibo.compose-richtext:richtext-ui-material3:$richtext_version"
-    implementation "com.halilibo.compose-richtext:richtext-commonmark:$richtext_version"
-
-    // Tests
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
-    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
-    debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
+    // androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
+    debugImplementation libs.bundles.composeDebug
 }

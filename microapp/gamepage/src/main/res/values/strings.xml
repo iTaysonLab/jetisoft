@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="classic_challenges">Core Challenges</string>
+    <string name="periodic_challenges">Time-Limited Challenges</string>
+    <string name="rewards">Rewards</string>
+    <string name="stats">Statistics</string>
+</resources>
