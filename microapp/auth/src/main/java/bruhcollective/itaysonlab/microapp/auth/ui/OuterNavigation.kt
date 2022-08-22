@@ -16,7 +16,7 @@ internal class OuterNavigation(
 ) {
     fun onSuccess() {
         controller.navigateRoot(
-            destinations.find<HomescreenMicroapp>().destination()
+            destinations.find<HomescreenMicroapp>().microappRoute
         )
     }
 

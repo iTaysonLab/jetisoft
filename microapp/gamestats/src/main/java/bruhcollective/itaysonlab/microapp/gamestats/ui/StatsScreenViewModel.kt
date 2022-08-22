@@ -14,6 +14,10 @@ class StatsScreenViewModel @Inject constructor(
     private val savedState: SavedStateHandle,
     private val requestGameStats: RequestGameStats
 ): PageViewModel<RequestGameStats.GameStats>() {
+    init {
+        reload()
+    }
+
     override suspend fun load() = requestGameStats(savedState.get<String>(GameStatsMicroapp.ARG_SPACE_ID)!!)
 
     private fun stateData() = (state as? State.Loaded<RequestGameStats.GameStats>)?.data

@@ -22,6 +22,7 @@ abstract class PageViewModel <T> : ViewModel() {
         state = try {
             State.Loaded(data = load())
         } catch (e: Throwable) {
+            e.printStackTrace()
             State.Error(exception = e)
         }
     }

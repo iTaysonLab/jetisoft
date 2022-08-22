@@ -4,5 +4,5 @@ import bruhcollective.itaysonlab.microapp.core.NestedMicroappEntry
 
 abstract class AuthMicroapp: NestedMicroappEntry {
     override val microappRoute = "auth"
-    fun destination() = microappRoute
+    override val fullscreenRoutes = listOf("auth")
 }

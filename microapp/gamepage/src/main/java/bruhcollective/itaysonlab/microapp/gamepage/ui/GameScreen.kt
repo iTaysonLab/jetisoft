@@ -81,10 +81,12 @@ fun GameScreen(
                     SectionHeader(header = stringResource(id = R.string.rewards))
                 }
 
-                item {
-                    SectionHeader(header = stringResource(id = R.string.stats), onShowAllClick = {
-                        onStatsNavigate(data.spaceId)
-                    })
+                if (data.game.isStatisticsSupported) {
+                    item {
+                        SectionHeader(header = stringResource(id = R.string.stats), onShowAllClick = {
+                            onStatsNavigate(data.spaceId)
+                        })
+                    }
                 }
             }
         }

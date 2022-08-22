@@ -14,6 +14,9 @@ interface MicroappEntry {
 
     val deepLinks: List<NavDeepLink>
         get() = emptyList()
+
+    val fullscreenRoutes: List<String>
+        get() = emptyList()
 }
 
 interface ComposableMicroappEntry: MicroappEntry {

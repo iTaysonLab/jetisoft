@@ -21,6 +21,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import bruhcollective.itaysonlab.microapp.core.util.DateUtils
@@ -92,7 +93,7 @@ fun GameLargeHeader(
 
                 Spacer(modifier = Modifier.height(8.dp))
             } else {
-                Text(text = name, fontWeight = FontWeight.Bold, fontSize = 30.sp)
+                Text(text = name, fontWeight = FontWeight.Bold, fontSize = 30.sp, modifier = Modifier.padding(horizontal = 16.dp), textAlign = TextAlign.Center)
             }
 
             Text(text = subtitle)
