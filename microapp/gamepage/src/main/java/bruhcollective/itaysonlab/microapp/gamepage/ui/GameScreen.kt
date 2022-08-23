@@ -24,6 +24,7 @@ import bruhcollective.itaysonlab.microapp.gamepage.ui.components.GamePeriodicCha
 fun GameScreen(
     onBackClicked: () -> Unit,
     onStatsNavigate: (String) -> Unit,
+    onSmartIntelNavigate: (String) -> Unit,
     viewModel: GameScreenViewModel = hiltViewModel()
 ) {
     val topBarState = rememberTopAppBarState()
@@ -58,6 +59,7 @@ fun GameScreen(
                         websiteUrl = data.game.websiteUrl,
                         redditUrl = data.game.redditUrl,
                         smartIntelSupported = data.game.viewer.meta.isDailyLoginSupported,
+                        onSmartIntelNavigate = { onSmartIntelNavigate(data.spaceId) }
                     )
                 }
 

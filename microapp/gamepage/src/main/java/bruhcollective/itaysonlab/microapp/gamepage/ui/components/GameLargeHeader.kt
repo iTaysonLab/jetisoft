@@ -24,7 +24,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import bruhcollective.itaysonlab.microapp.core.util.DateUtils
+import bruhcollective.itaysonlab.jetisoft.utils.DateUtils
 import bruhcollective.itaysonlab.microapp.gamepage.R
 import coil.compose.AsyncImage
 
@@ -39,7 +39,8 @@ fun GameLargeHeader(
     instUrl: String?,
     websiteUrl: String?,
     redditUrl: String?,
-    smartIntelSupported: Boolean
+    smartIntelSupported: Boolean,
+    onSmartIntelNavigate: () -> Unit
 ) {
     val surfaceColor = MaterialTheme.colorScheme.surface
 
@@ -114,7 +115,7 @@ fun GameLargeHeader(
                 }
 
                 if (smartIntelSupported) {
-                    IconButton(onClick = { /*TODO*/ }) {
+                    IconButton(onClick = onSmartIntelNavigate) {
                         Icon(Icons.Rounded.TipsAndUpdates, contentDescription = null)
                     }
                 }

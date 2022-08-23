@@ -10,7 +10,7 @@ import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import bruhcollective.itaysonlab.jetisoft.uikit.UbiPositiveOne
-import bruhcollective.itaysonlab.microapp.core.util.DateUtils
+import bruhcollective.itaysonlab.jetisoft.utils.DateUtils
 import coil.compose.AsyncImage
 
 @Composable

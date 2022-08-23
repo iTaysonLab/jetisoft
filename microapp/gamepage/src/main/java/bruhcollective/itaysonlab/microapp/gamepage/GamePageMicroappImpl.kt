@@ -8,6 +8,7 @@ import bruhcollective.itaysonlab.microapp.core.Destinations
 import bruhcollective.itaysonlab.microapp.core.find
 import bruhcollective.itaysonlab.microapp.gamepage.ui.GameScreen
 import bruhcollective.itaysonlab.microapp.gamestats.GameStatsMicroapp
+import bruhcollective.itaysonlab.microapp.smartintel.SmartIntelMicroapp
 import javax.inject.Inject
 
 class GamePageMicroappImpl @Inject constructor(): GamePageMicroapp() {
@@ -21,6 +22,12 @@ class GamePageMicroappImpl @Inject constructor(): GamePageMicroapp() {
             navController.navigate(
                 destinations
                     .find<GameStatsMicroapp>()
+                    .gameDestination(spaceId)
+            )
+        }, onSmartIntelNavigate = { spaceId ->
+            navController.navigate(
+                destinations
+                    .find<SmartIntelMicroapp>()
                     .gameDestination(spaceId)
             )
         })

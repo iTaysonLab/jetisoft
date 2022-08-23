@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace 'bruhcollective.itaysonlab.microapp.core'
+    namespace 'bruhcollective.itaysonlab.microapp.smartintel'
     compileSdk 33
 
     defaultConfig {
@@ -47,12 +47,20 @@ kapt {
 }
 
 dependencies {
+    implementation project(":microapp:core")
+    implementation project(":microapp:news")
+
     implementation project(":domain")
     implementation project(":data")
+    implementation project(":uikit")
 
     implementation libs.bundles.compose
+    implementation libs.bundles.accompanist
     debugImplementation libs.bundles.composeDebug
 
+    implementation libs.coilCompose
+
     implementation libs.hiltAndroid
+    implementation libs.hiltNavigation
     kapt libs.hiltCompiler
 }

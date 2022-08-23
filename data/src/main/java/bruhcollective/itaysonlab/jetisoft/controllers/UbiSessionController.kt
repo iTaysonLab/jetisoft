@@ -2,6 +2,7 @@ package bruhcollective.itaysonlab.jetisoft.controllers
 
 import bruhcollective.itaysonlab.jetisoft.models.auth.Session
 import bruhcollective.itaysonlab.jetisoft.service.AuthenticationService
+import kotlinx.coroutines.runBlocking
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import okhttp3.Request
@@ -19,9 +20,18 @@ class UbiSessionController @Inject constructor(
 
     fun enrichRequestWithData(request: Request.Builder, origRequest: Request) {
         ubiAuthSession ?: return // not authorized
+
+        if (shouldRelogin()) {
+            runBlocking { isSignedIn() }
+        }
+
         request.header("Authorization", "ubi_v1 t=${ubiAuthSession!!.ticket}")
         request.header("Ubi-SessionId", ubiAuthSession!!.sessionId)
         request.header("Ubi-ProfileId", ubiAuthSession!!.profileId)
+    }
+
+    private fun shouldRelogin(): Boolean {
+        return Instant.parse(ubiAuthSession?.expiration ?: return false) < Clock.System.now()
     }
 
     suspend fun isSignedIn(): Boolean {

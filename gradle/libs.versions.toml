@@ -40,6 +40,7 @@ apolloRuntime = { module = "com.apollographql.apollo3:apollo-runtime", version.r
 apolloApi = { module = "com.apollographql.apollo3:apollo-api", version.ref = "apollo" }
 
 coilCompose = "io.coil-kt:coil-compose:2.2.0"
+coilGif = "io.coil-kt:coil-gif:2.2.0"
 mmkv = "com.tencent:mmkv:1.2.14"
 
 hiltNavigation = "androidx.hilt:hilt-navigation-compose:1.0.0"

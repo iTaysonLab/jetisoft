@@ -1,4 +1,4 @@
-query GetGameInfo ($spaceId: String) {
+query GetGameInfo ($spaceId: String!) {
     game(spaceId: $spaceId) {
         id
 

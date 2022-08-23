@@ -88,6 +88,7 @@ dependencies {
     implementation libs.bundles.accompanist
 
     implementation libs.coilCompose
+    implementation libs.coilGif
 
     implementation libs.hiltNavigation
     implementation libs.hiltAndroid

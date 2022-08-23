@@ -15,7 +15,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import bruhcollective.itaysonlab.microapp.core.util.DateUtils
+import bruhcollective.itaysonlab.jetisoft.utils.DateUtils
 import coil.compose.AsyncImage
 
 @Composable

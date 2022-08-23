@@ -1,4 +1,4 @@
-package bruhcollective.itaysonlab.microapp.core.util
+package bruhcollective.itaysonlab.jetisoft.utils
 
 import kotlinx.datetime.*
 import java.time.format.DateTimeFormatter
