@@ -7,7 +7,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.ColorPainter
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import bruhcollective.itaysonlab.jetisoft.uikit.UbiPositiveOne
@@ -110,6 +109,7 @@ fun ClassicChallengePagerCard(
     }
 }
 
+/*
 @Preview(name = "Pager card (partial, not completed)")
 @Composable
 fun ClassicChallengePagerCard_Preview_NotCompleted_Partial() {
@@ -144,4 +144,4 @@ fun ClassicChallengePagerCard_Preview_Completed() {
             isCompleted = true
         )
     }
-}
+}*/
