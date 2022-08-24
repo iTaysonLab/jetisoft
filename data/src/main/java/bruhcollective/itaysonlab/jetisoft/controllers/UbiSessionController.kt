@@ -2,9 +2,8 @@ package bruhcollective.itaysonlab.jetisoft.controllers
 
 import bruhcollective.itaysonlab.jetisoft.models.auth.Session
 import bruhcollective.itaysonlab.jetisoft.service.AuthenticationService
+import bruhcollective.itaysonlab.jetisoft.utils.DateUtils
 import kotlinx.coroutines.runBlocking
-import kotlinx.datetime.Clock
-import kotlinx.datetime.Instant
 import okhttp3.Request
 import okio.ByteString.Companion.encodeUtf8
 import retrofit2.HttpException
@@ -21,7 +20,7 @@ class UbiSessionController @Inject constructor(
     fun enrichRequestWithData(request: Request.Builder, origRequest: Request) {
         ubiAuthSession ?: return // not authorized
 
-        if (shouldRelogin()) {
+        if (isSessionExpired(ubiAuthSession)) {
             runBlocking { isSignedIn() }
         }
 
@@ -30,15 +29,15 @@ class UbiSessionController @Inject constructor(
         request.header("Ubi-ProfileId", ubiAuthSession!!.profileId)
     }
 
-    private fun shouldRelogin(): Boolean {
-        return Instant.parse(ubiAuthSession?.expiration ?: return false) < Clock.System.now()
+    private fun isSessionExpired(session: Session?): Boolean {
+        return DateUtils.isoLessThanCurrentTime(session?.expiration ?: return false)
     }
 
     suspend fun isSignedIn(): Boolean {
         val session = ubiAuthSession
 
         return if (session != null) {
-            if (Instant.parse(session.expiration) < Clock.System.now()) {
+            if (isSessionExpired(session)) {
                 val canUseThisSession = session.rememberMeTicket != null && createSession(
                     SessionType.RememberMeTicket(session.rememberMeTicket)
                 ) is SessionResult.Success

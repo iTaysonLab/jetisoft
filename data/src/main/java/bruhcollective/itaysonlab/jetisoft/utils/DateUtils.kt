@@ -25,4 +25,6 @@ object DateUtils {
             android.text.format.DateUtils.FORMAT_ABBREV_ALL
         ).toString()
     }
+
+    fun isoLessThanCurrentTime(iso: String) = Instant.parse(iso) < Clock.System.now()
 }
