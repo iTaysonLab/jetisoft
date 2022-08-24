@@ -94,7 +94,7 @@ fun GameLargeHeader(
 
                 Spacer(modifier = Modifier.height(8.dp))
             } else {
-                Text(text = name, fontWeight = FontWeight.Bold, fontSize = 30.sp, modifier = Modifier.padding(horizontal = 16.dp), textAlign = TextAlign.Center)
+                Text(text = name, fontWeight = FontWeight.Bold, fontSize = 30.sp, modifier = Modifier.padding(horizontal = 16.dp), textAlign = TextAlign.Center, lineHeight = 34.sp)
             }
 
             Text(text = subtitle)
