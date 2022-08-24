@@ -1,20 +1,23 @@
 package bruhcollective.itaysonlab.microapp.gamepage.ui
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Analytics
 import androidx.compose.material.icons.rounded.ArrowBack
+import androidx.compose.material.icons.rounded.Redeem
 import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import bruhcollective.itaysonlab.jetisoft.uikit.SectionHeader
 import bruhcollective.itaysonlab.jetisoft.uikit.page.PageLayout
 import bruhcollective.itaysonlab.microapp.gamepage.R
+import bruhcollective.itaysonlab.microapp.gamepage.ui.components.ActionCard
 import bruhcollective.itaysonlab.microapp.gamepage.ui.components.GameClassicChallengesCards
 import bruhcollective.itaysonlab.microapp.gamepage.ui.components.GameLargeHeader
 import bruhcollective.itaysonlab.microapp.gamepage.ui.components.GamePeriodicChallengesCards
@@ -79,15 +82,29 @@ fun GameScreen(
                     }
                 }
 
+                /*
                 item {
-                    SectionHeader(header = stringResource(id = R.string.rewards))
+                    ActionCard(
+                        icon = Icons.Rounded.Redeem,
+                        title = stringResource(id = R.string.rewards),
+                        modifier = Modifier.fillParentMaxWidth(),
+                        onClick = {
+
+                        }
+                    )
                 }
+                 */
 
                 if (data.game.isStatisticsSupported) {
                     item {
-                        SectionHeader(header = stringResource(id = R.string.stats), onShowAllClick = {
-                            onStatsNavigate(data.spaceId)
-                        })
+                        ActionCard(
+                            icon = Icons.Rounded.Analytics,
+                            title = stringResource(id = R.string.stats),
+                            modifier = Modifier.fillParentMaxWidth().padding(horizontal = 16.dp),
+                            onClick = {
+                                onStatsNavigate(data.spaceId)
+                            }
+                        )
                     }
                 }
             }
