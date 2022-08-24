@@ -1,9 +1,10 @@
 package bruhcollective.itaysonlab.microapp.smartintel.ui.tiles
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.TipsAndUpdates
+import androidx.compose.material.icons.rounded.Toll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -20,24 +21,25 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import bruhcollective.itaysonlab.microapp.smartintel.R
 import bruhcollective.itaysonlab.jetisoft.models.SmartIntelNode
+import bruhcollective.itaysonlab.microapp.smartintel.R
 import coil.compose.AsyncImage
 
 @Composable
-internal fun IntroTile(
-    node: SmartIntelNode.Intro
+internal fun RewardTile(
+    node: SmartIntelNode.Reward
 ) {
-    val surfaceColor = MaterialTheme.colorScheme.surfaceColorAtElevation(4.dp)
-
     Box(
-        modifier = Modifier
-            .clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp))
+        Modifier
+            .background(MaterialTheme.colorScheme.surfaceColorAtElevation(4.dp))
+            .padding(horizontal = 16.dp)
+            .clip(RoundedCornerShape(8.dp))
+            .background(MaterialTheme.colorScheme.surface)
             .fillMaxWidth()
             .height(IntrinsicSize.Min)
     ) {
         AsyncImage(
-            model = node.background,
+            model = node.reward.imageUrl,
             contentDescription = null,
             modifier = Modifier
                 .fillMaxSize()
@@ -47,9 +49,7 @@ internal fun IntroTile(
                         Brush.verticalGradient(
                             colorStops = arrayOf(
                                 0f to Color.Black.copy(alpha = 0.5f),
-                                //0.5f to surfaceColor.copy(alpha = 0.5f),
-                                //0.85f to surfaceColor,
-                                1f to surfaceColor,
+                                1f to Color.Black,
                             )
                         )
                     )
@@ -58,19 +58,32 @@ internal fun IntroTile(
             contentScale = ContentScale.Crop
         )
 
-        Column(Modifier.padding(16.dp)) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Icon(Icons.Rounded.TipsAndUpdates, contentDescription = null)
-                Spacer(modifier = Modifier.width(16.dp))
-                Column {
-                    Text(text = stringResource(id = R.string.smart_intel_report), fontSize = 13.sp)
-                    Text(text = node.formattedDate, fontSize = 13.sp)
-                }
+        Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier
+            .padding(16.dp)
+            .align(Alignment.TopStart)) {
+            Icon(Icons.Rounded.Toll, contentDescription = null)
+            Spacer(modifier = Modifier.width(16.dp))
+            Column {
+                Text(text = stringResource(id = R.string.smart_intel_balance), fontSize = 13.sp)
+                Text(text = stringResource(id = R.string.x_units, node.reward.viewer?.node?.unitsBalance ?: 0), fontSize = 13.sp)
             }
-            
-            Spacer(modifier = Modifier.height(36.dp))
-            
-            Text(text = node.message)
+        }
+
+        Column(modifier = Modifier
+            .padding(16.dp)
+            .align(Alignment.BottomStart)) {
+
+            Spacer(modifier = Modifier.height(96.dp))
+
+            Text(
+                text = node.reward.name,
+                color = MaterialTheme.colorScheme.onSurface
+            )
+
+            Text(
+                text = stringResource(id = R.string.units_with_rarity, node.reward.rarity, node.reward.cost),
+                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
+            )
         }
     }
 }

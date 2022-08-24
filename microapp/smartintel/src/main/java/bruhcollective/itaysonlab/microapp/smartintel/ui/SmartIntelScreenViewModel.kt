@@ -9,7 +9,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class SmartIntelScreenViewModel @Inject constructor(
+internal class SmartIntelScreenViewModel @Inject constructor(
     private val requestGameSmartIntel: RequestGameSmartIntel,
     private val savedState: SavedStateHandle
 ): PageViewModel<List<SmartIntelNode>>() {

@@ -2,4 +2,7 @@
 <resources>
     <string name="smart_intel">Smart Intel</string>
     <string name="smart_intel_report">YOUR SMART INTEL REPORT</string>
+    <string name="smart_intel_balance">YOUR BALANCE</string>
+    <string name="x_units">%1$d Units</string>
+    <string name="units_with_rarity">%1$s • %2$d Units</string>
 </resources>

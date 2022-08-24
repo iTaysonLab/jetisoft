@@ -91,6 +91,6 @@ fun List<GetSmartIntelsQuery.Node>.mapToSmartIntelModels() = map { node ->
         }
 
     }
-}.flatten().dropLast(1)
+}.flatten()
 
 private fun randomUUID() = UUID.randomUUID().toString()

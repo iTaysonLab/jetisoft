@@ -22,7 +22,7 @@ import bruhcollective.itaysonlab.microapp.smartintel.ui.tiles.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SmartIntelScreen(
+internal fun SmartIntelScreen(
     onYoutubeVideoClick: (String) -> Unit,
     onBackClicked: () -> Unit,
     viewModel: SmartIntelScreenViewModel = hiltViewModel()
@@ -56,6 +56,8 @@ fun SmartIntelScreen(
                         is SmartIntelNode.Text -> TextTile(node)
                         is SmartIntelNode.YoutubeVideo -> YoutubeVideoTile(onYoutubeVideoClick, node)
                         is SmartIntelNode.ClassicChallenge -> ClassicChallengeTile(node)
+                        is SmartIntelNode.PeriodicChallenge -> PeriodicChallengeTile(node)
+                        is SmartIntelNode.Reward -> RewardTile(node)
                         else -> UnknownTile()
                     }
                 }

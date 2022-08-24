@@ -31,6 +31,9 @@ fragment SmartIntelRewardTile on RewardTile {
     imageUrl
     isNew
     cost
+    rarity
+    rarityName
+    rarityColor
     game {
       node {
         id

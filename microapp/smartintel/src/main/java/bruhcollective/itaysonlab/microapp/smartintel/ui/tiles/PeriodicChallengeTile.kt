@@ -15,8 +15,8 @@ import bruhcollective.itaysonlab.jetisoft.models.SmartIntelNode
 import coil.compose.AsyncImage
 
 @Composable
-internal fun ClassicChallengeTile(
-    node: SmartIntelNode.ClassicChallenge
+internal fun PeriodicChallengeTile(
+    node: SmartIntelNode.PeriodicChallenge
 ) {
     Column(
         Modifier
@@ -29,7 +29,7 @@ internal fun ClassicChallengeTile(
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             AsyncImage(
-                model = node.classicChallenge.icon,
+                model = node.periodicChallenge.imageUrl,
                 contentDescription = null,
                 modifier = Modifier.size(56.dp),
                 placeholder = ColorPainter(MaterialTheme.colorScheme.surface)
@@ -37,11 +37,11 @@ internal fun ClassicChallengeTile(
             Spacer(modifier = Modifier.width(16.dp))
             Column {
                 Text(
-                    text = node.classicChallenge.name,
+                    text = node.periodicChallenge.name,
                     color = MaterialTheme.colorScheme.onSurface
                 )
                 Text(
-                    text = "${node.classicChallenge.xpPrize} XP",
+                    text = "${node.periodicChallenge.xpPrize} XP",
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
                 )
             }
@@ -50,7 +50,7 @@ internal fun ClassicChallengeTile(
         Spacer(modifier = Modifier.height(8.dp))
 
         Text(
-            node.classicChallenge.description,
+            node.periodicChallenge.description,
             fontSize = 13.sp,
             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
             lineHeight = 18.sp
