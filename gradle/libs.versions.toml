@@ -1,8 +1,8 @@
 [versions]
-compose = "1.3.0-alpha03"
-compose_m3 = "1.0.0-alpha16"
-compose_compiler = "1.3.0"
-accompanist = "0.26.1-alpha"
+compose = "1.3.0-beta02"
+compose_m3 = "1.0.0-beta02"
+compose_compiler = "1.3.1"
+accompanist = "0.26.2-beta"
 hilt = "2.43.2"
 apollo = "3.5.0"
 retrofit = "2.9.0"

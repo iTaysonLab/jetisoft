@@ -2,6 +2,7 @@ package bruhcollective.itaysonlab.jetisoft.models.stats
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import dev.zacsweers.moshix.adapters.JsonString
 
 @JsonClass(generateAdapter = true)
 class StatsMicroappDefinitionRoot(
@@ -30,7 +31,7 @@ class StatsMicroappDefTab(
 @JsonClass(generateAdapter = true)
 data class StatsTabItem(
     val index: Int,
-    val stats: List<String>,
+    @JsonString val stats: String,
     val type: List<String>?,
     val clampTo: Int?,
     //

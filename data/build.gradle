@@ -33,6 +33,7 @@ kapt {
 
 dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
+    implementation "dev.zacsweers.moshix:moshi-adapters:0.18.3"
 
     implementation libs.bundles.retrofit
     implementation libs.mmkv

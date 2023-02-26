@@ -18,7 +18,7 @@ data class StatsCard(
     val format: String,
     val semantic: String,
     val sort: String,
-    val startDate: String,
+    val startDate: String?,
     val lastModified: String,
     val unit: String,
     val obj: String

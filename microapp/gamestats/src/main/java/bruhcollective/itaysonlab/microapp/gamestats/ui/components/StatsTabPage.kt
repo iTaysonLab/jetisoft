@@ -1,13 +1,14 @@
 package bruhcollective.itaysonlab.microapp.gamestats.ui.components
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Text
-import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.Card
 import androidx.compose.material3.surfaceColorAtElevation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -54,7 +55,8 @@ private fun StatCardRenderer(
     val bgColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.2f)
 
     val mainStat = remember(layoutDef.stats, layoutDef.mainStat, layoutDef.formulaResult) {
-        layoutDef.formulaResult ?: layoutDef.mainStat ?: layoutDef.stats.first()
+        Log.d("Ubi", layoutDef.stats)
+        layoutDef.formulaResult ?: layoutDef.mainStat ?: "" /*?: layoutDef.stats.first()*/
     }
 
     val localized = remember(mainStat) {
